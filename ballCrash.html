@@ -1,0 +1,99 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="author" content="智能社 - zhinengshe.com" />
+<meta name="copyright" content="智能社 - zhinengshe.com" />
+<title>智能社 - www.zhinengshe.com</title>
+<style>
+#div1{ position:absolute;left:0;top:0;width:80px; height:80px;
+ background:lightblue;border-radius:50%;}
+</style>
+<script>
+window.onload = function(){
+	var oDiv = document.getElementById("div1");
+	var timer=null;
+	
+	var speedX=0;
+	var speedY=0;
+	var lastX = 0;
+	var lastY = 0;
+	
+	oDiv.onmousedown=function (ev) {
+		clearInterval(timer);
+		var oEvt=ev||event;
+		var disX=oEvt.clientX-oDiv.offsetLeft;
+		var disY=oEvt.clientY-oDiv.offsetTop;
+		document.onmousemove=function (ev) {
+			var oEvt=ev||event;
+			oDiv.style.left=oEvt.clientX-disX+'px';
+			oDiv.style.top=oEvt.clientY-disY+'px';
+			
+			speedX = oDiv.offsetLeft - lastX;
+			speedY = oDiv.offsetTop - lastY;
+			
+			lastX = oDiv.offsetLeft;
+			lastY = oDiv.offsetTop;
+		}
+		document.onmouseup = function(){
+			document.onmousemove = null;
+			document.onmouseup = null;
+			oDiv.releaseCapture && oDiv.releaseCapture();
+			
+			move();
+		 
+		};	
+		oDiv.setCapture && oDiv.setCapture();
+		return false;
+	};
+	
+	
+	function move () {
+		clearInterval(timer);
+		timer=setInterval(function () {
+			speedY+=3;
+			var l=oDiv.offsetLeft+speedX;
+			var t=oDiv.offsetTop+speedY;
+			if(t > document.documentElement.clientHeight - oDiv.offsetHeight){
+				t = document.documentElement.clientHeight - oDiv.offsetHeight;
+				speedY *= -0.9;
+				speedX *= 0.9;
+			} else if(t < 0){
+				t = 0;
+				speedY *= -0.9;
+				speedX *= 0.9;
+			}
+			
+			if(l > document.documentElement.clientWidth - oDiv.offsetWidth){
+				l = document.documentElement.clientWidth - oDiv.offsetWidth;
+				speedX *= -0.9;
+				speedY *= 0.9;
+			} else if(l < 0){
+				l = 0;
+				speedX *= -0.9;
+				speedY *= 0.9;
+			}
+			oDiv.style.left=l+'px';
+			oDiv.style.top=t+'px';
+			
+			if(Math.abs(speedX) < 1){
+				speedX = 0;
+			}
+			if(Math.abs(speedY) < 1){
+				speedY = 0;
+			}
+			if(speedX == 0 && speedY == 0 && t == document.documentElement.clientHeight - oDiv.offsetHeight){
+				clearInterval(timer);
+			}
+		},30);
+	}
+	
+};
+</script>
+</head>
+
+<body>
+<div id="div1"></div>
+</body>
+</html>
+
