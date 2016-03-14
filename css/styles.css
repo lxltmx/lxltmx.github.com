@@ -170,7 +170,7 @@ Features
  */
 .features-wrapper, .team-wrapper { margin: 70px 0 0; }
 .shadow { text-shadow: rgb(55, 181, 161) 1px 1px, rgb(55, 181, 161) 2px 2px, rgb(55, 181, 161) 3px 3px, rgb(55, 181, 161) 4px 4px, rgb(55, 181, 161) 5px 5px;  }
-.icon { height: 175px; width: 175px; line-height: 175px; max-width: 100%; background:#3C3C3C; border-radius: 50%; display: block; color: #ccc; font-size: 55px; text-align: center; vertical-align: middle; position: relative; margin: 0 auto 50px; }
+.icon { height: 175px; width: 175px; line-height: 175px; max-width: 100%; background:lightblue; border-radius: 50%; display: block; color: #ccc; font-size: 55px; text-align: center; vertical-align: middle; position: relative; margin: 0 auto 50px; }
 /* 
 iPhone Section
  */
