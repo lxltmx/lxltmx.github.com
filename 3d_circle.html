@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{margin:0;padding:0;list-style:none;}
+			#ul1 li img{
+				width:120px;height:170px;
+				border-radius:9px;
+				-webkit-border-radius: 9px;
+				-moz-border-radius: 9px;
+			}
+			body{background:#000;}
+			#ul1{
+				width:120px;height:170px;
+				margin:150px auto;
+				position:relative;
+				transform-style:preserve-3d;
+				transform:perspective(800px) rotateX(-13deg);
+			}
+			#ul1 li{
+				width:100%;height:100%;
+				position:absolute;
+				border-radius:4px;
+				box-shadow:0 0 10px #fff;
+			}
+			#ul1 li span{
+				width:100%;height:100%;overflow:hidden;
+				position:absolute;
+				border-radius:9px;
+				box-shadow:0 0 10px #fff;
+				top:180px;left:0;
+				opacity:0.5;
+				-webkit-mask:-webkit-linear-gradient(rgba(0,0,0,0) 35%,rgba(0,0,0,1));
+				transform:scale(1,-1);
+			}
+			#ul1 strong{
+				    position: absolute;
+				    border-radius:50%;
+				    left: 50%;
+				    top: 50%;
+				    width: 1000px;
+				    height: 1000px;
+				    margin-left: -500px;
+				    margin-top: -500px;
+				    background: -webkit-radial-gradient(center center, 600px 600px ,rgba(50,50,50,1), rgba(0,0,0,0));
+				    -webkit-transform: translateY(200px) rotateX(90deg);
+			}
+		</style>
+		<script type="text/javascript">
+			window.onload=function () {
+				var oUl=document.getElementById("ul1");
+				var aLi=oUl.getElementsByTagName('li');
+				var len=aLi.length;
+				for(var i=0;i<len;i++){
+					//创建阴影
+					var oImg=document.createElement('img');
+					oImg.src='img2/'+(i+1)+'.jpg';
+					var oSpan=document.createElement('span');
+					oSpan.appendChild(oImg);
+					aLi[i].appendChild(oSpan);
+					//li转出来
+					aLi[i].style.transition='1s all ease '+(len-1-i)*200+'ms';
+					aLi[i].style.transform='rotateY('+360/len*i+'deg) translateZ(300px)';
+				}
+				
+				//设置透明度
+				aLi[0].addEventListener('transitionend',function () {
+					for(var i=0;i<len;i++){
+						//把0-360变成左右两边各1-0的值
+						var d=360/len*i;
+						if(d>180) d=360-d;
+						d=180-d;
+						var scale=d/180+0.1;
+						scale<0.5&&(scale=0.5);
+						aLi[i].style.opacity=scale;
+					}
+				},false);				
+				//拖拽
+				var x=130;
+				var y=0;
+				//甩出去
+				var speedX=0;
+				var speedY=0;
+				var lastY=0;
+				var lastX=0;
+				var timer=null;
+				
+				oUl.onmousedown=function (ev) {
+					clearInterval(timer);
+					var disX=ev.clientX-y;
+					var disY=ev.clientY-x;
+					document.onmousemove=function (ev) {
+						y=ev.clientX-disX;
+						x=ev.clientY-disY;
+						//设置甩出去的速度
+						speedX=x-lastX;
+						speedY=y-lastY;
+						lastX=x;
+						lastY=y;
+						//限制上下旋转角度
+						if(x>600) x=600;
+						if(x<-600) x=-600;
+						
+						oUl.style.transform='perspective(800px) rotateX('+-x/10+'deg) rotateY('+y/10+'deg) ';
+					};
+					document.onmouseup=function () {
+						document.onmousemove=document.onmouseup=null;
+						
+						clearInterval(timer);
+						timer=setInterval(function () {
+							x+=speedX;
+							y+=speedY;
+							speedX*=0.96;
+							speedY*=0.96;
+							if(Math.abs(speedX)<1){
+								speedX=0;
+							}
+							if(Math.abs(speedY)<1){
+								speedY=0;
+							}
+							if(speedX==0&&speedY==0){
+								clearInterval(timer);
+							}
+							oUl.style.transform='perspective(800px) rotateX('+-x/10+'deg) rotateY('+y/10+'deg) ';
+						},30)
+					};
+					return false;	
+				};
+			};
+		</script>
+	</head>
+	<body>
+		<ul id="ul1">
+			<strong></strong>
+			<li><img src="img2/1.jpg" /></li>
+			<li><img src="img2/2.jpg" /></li>
+			<li><img src="img2/3.jpg" /></li>
+			<li><img src="img2/4.jpg" /></li>
+			<li><img src="img2/5.jpg" /></li>
+			<li><img src="img2/6.jpg" /></li>
+			<li><img src="img2/7.jpg" /></li>
+			<li><img src="img2/8.jpg" /></li>
+			<li><img src="img2/9.jpg" /></li>
+			<li><img src="img2/10.jpg" /></li>
+		</ul>
+	</body>
+</html>
