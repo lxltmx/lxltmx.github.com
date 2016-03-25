@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			html{overflow:hidden;}
+			#c1{background:#000;}
+		</style>
+		<script type="text/javascript">
+			function rnd (n,m) {
+				return Math.floor(n+Math.random()*(m-n));
+			}
+			window.onload=function () {
+				var oC=document.getElementById("c1");
+				var gd=oC.getContext('2d');
+				
+				var winW=window.innerWidth;
+				var winH=window.innerHeight;
+				oC.width=winW;
+				oC.height=winH;
+				//初始化点		{x,y,w,h}
+				var n=5;
+				var aPoint=[];
+				for(var i=0;i<n;i++){
+					aPoint[i]={
+						w:1,
+						h:1,
+						x:rnd(0,winW),
+						y:rnd(0,winH),
+						speedX:rnd(-10,10),
+						speedY:rnd(-10,10)
+					};
+				}
+				//画点
+				var oldPoint=[];
+				clearInterval(timer);
+				var timer=setInterval(function () {
+					gd.clearRect(0,0,oC.width,oC.height);
+					for(var i=0;i<aPoint.length;i++){
+						gd.fillStyle='#C5E3FD';
+						gd.fillRect(aPoint[i].x,aPoint[i].y,aPoint[i].w,aPoint[i].h);
+						gd.strokeRect(aPoint[i].x,aPoint[i].y,aPoint[i].w,aPoint[i].h);
+						//动
+						aPoint[i].x+=aPoint[i].speedX;
+						aPoint[i].y+=aPoint[i].speedY;
+						//限定
+						if(aPoint[i].x<0){
+							aPoint[i].speedX*=-1;
+						}
+						if(aPoint[i].x>winW){
+							aPoint[i].speedX*=-1;
+						}
+						if(aPoint[i].y<0){
+							aPoint[i].speedY*=-1;
+						}
+						if(aPoint[i].y>winH){
+							aPoint[i].speedY*=-1;
+						}
+					}
+					//连接点
+					gd.beginPath();
+					gd.moveTo(aPoint[0].x,aPoint[0].y);
+					for(var i=1;i<n;i++){
+						gd.lineTo(aPoint[i].x,aPoint[i].y);
+					}
+					gd.closePath();
+					gd.strokeStyle='#C5E3FD';
+					gd.stroke();
+					//存画面，形成阴影
+					var arr=[]		//一个平面的5个点的坐标
+					for(var i=0;i<n;i++){
+						arr[i]={x:aPoint[i].x,y:aPoint[i].y};
+					}
+					//存平面
+					oldPoint.push(arr);
+					//限定平面个数
+					while(oldPoint.length>20){
+						oldPoint.shift(oldPoint[0]);
+					}
+					//绘制阴影
+					
+					for(var i=0;i<oldPoint.length;i++){
+						gd.beginPath();
+						gd.moveTo(oldPoint[i][0].x,oldPoint[i][0].y);
+						for(var j=0;j<oldPoint[i].length;j++){
+							gd.lineTo(oldPoint[i][j].x,oldPoint[i][j].y);
+						}
+						gd.closePath();
+						//var r=Math.floor(Math.random()*255);
+						//var g=Math.floor(Math.random()*255);
+						//var b=Math.floor(Math.random()*255);
+						//gd.strokeStyle='rgba('+r+','+g+','+b+','+i/oldPoint.length+')';
+						gd.strokeStyle='rgba(255,0,0,'+i/oldPoint.length+')';
+						gd.stroke();
+					}
+				},16)
+			};
+		</script>
+	</head>
+	<body>
+		<canvas id="c1" width="800" height="500"></canvas>
+	</body>
+</html>
