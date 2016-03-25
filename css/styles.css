@@ -18,7 +18,7 @@ html, html a { -webkit-font-smoothing: antialiased; text-shadow: 1px 1px 1px rgb
 * elements. */
 html, button, input, select, textarea { font-family: "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif; }
 /* * Addresses margins handled incorrectly in IE 6/7. */
-body { margin: 0; font-family: "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif; }
+body { margin: 0; font-family: "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;}
 /* 
 Links
 */
@@ -227,7 +227,7 @@ me
 */
 #teamSlider .me h5{font-size:16px;font-weight:bold;}
 #teamSlider .me h5 p{transition:all 1s ease;}
-#teamSlider .me h5:hover p{font-size:20px;color:skyblue;}
+#teamSlider .me h5:hover p{font-size:20px;color:rgb(61, 201, 179);}
 .team img { margin-bottom: 40px; }
 ul.social-buttons { list-style: none; margin: 0; padding: 0; }
 ul.social-buttons li { display: inline-block; margin-right: 10px; }
@@ -256,6 +256,7 @@ FlexSlider Custom CSS
  */
 #servicesSlider { margin-top: 70px; }
 ul.slides li { margin-bottom: 20px; }
+ul.slides li h2{ font-size:18px;}
 /*
 Waypoints
 */

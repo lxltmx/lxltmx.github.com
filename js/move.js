@@ -1,11 +1,10 @@
 function getStyle (obj,attr) {
-	return currentStyle?obj.currentStyle[attr]:getComputedStyle(obj,false)[attr];
+	return obj.currentStyle?obj.currentStyle[attr]:getComputedStyle(obj,false)[attr];
 }
 function move (obj,json,options) {
 	options=options||{};
 	options.time=options.time||300;
 	options.type=options.type||'ease-out';
-	options.fn=options.fn||null;
 	
 	var start={};
 	var dis={};
@@ -31,7 +30,7 @@ function move (obj,json,options) {
 					var cur=start[key]+dis[key]*a*a*a;
 					break;
 				case 'ease-out':
-					var a=n/count;
+					var a=1-n/count;
 					var cur=start[key]+dis[key]*(1-a*a*a);
 					break;
 			}

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#clock .hour,#clock .min,#clock .sec{
+				transform-origin:center bottom;
+			}
+			#clock{
+				width:300px;height:300px;
+				position:relative;background:lightskyblue;
+				border:1px solid #000; border-radius:50%;
+				box-shadow:1px 2px 3px #000;margin:50px auto;
+			}
+			#clock .hour{
+				width:10px;height:70px;background:#000;
+				position:absolute;left:50%;top:50%;
+				margin-left:-5px;margin-top:-70px;
+			}
+			#clock .min{
+				width:6px;height:100px;background:#000;
+				position:absolute;left:50%;top:50%;
+				margin-left:-3px;margin-top:-100px;
+			}
+			#clock .sec{
+				width:2px;height:120px;background:red;
+				position:absolute;left:50%;top:50%;
+				margin-left:-1px;margin-top:-120px;
+			}
+			#clock .cap{
+				width:20px;height:20px;background:#000;
+				position:absolute;left:50%;top:50%;
+				margin-left:-10px;margin-top:-10px;
+				border-radius:50%;
+			}
+			#clock span{
+				width:4px;height:10px;background:#000;
+				position:absolute;left:50%;top:0;
+				margin-left:-2px;
+				transform-origin:center 150px;
+			}
+			#clock span.on{height:12px;background:lightgoldenrodyellow;}
+			#clock span strong {
+				position:absolute;top:12px;left:50%;
+				width:30px;margin-left:-15px;
+				text-align:center;
+			}
+		</style>
+		<script type="text/javascript">
+			window.onload=function () {
+				var oClock=document.getElementById("clock");
+				var oH=oClock.querySelector(".hour");
+				var oM=oClock.querySelector(".min");
+				var oS=oClock.querySelector(".sec");
+				
+				function clock () {
+					var oDate=new Date();
+					var iH=oDate.getHours();
+					var iM=oDate.getMinutes();
+					var iS=oDate.getSeconds();
+					var iMs=oDate.getMilliseconds();
+					
+					oH.style.transform='rotate('+(iH*30+iM/60*30)+'deg)';
+					oM.style.transform='rotate('+(iM*6+iS/60*6)+'deg)';
+					oS.style.transform='rotate('+(iS*6+iMs/1000*6)+'deg)';
+					//oMs.style.transform='rotate('+iMs*30+'deg)';
+				}
+				clock();
+				setInterval(clock,30);
+				//创建刻度
+				for(var i=0;i<60;i++){
+					var oSpan=document.createElement('span');
+					oClock.appendChild(oSpan);
+					oSpan.style.transform='rotate('+i*6+'deg)';
+					if(i%5==0){
+						oSpan.classList.add('on');
+						if(i==0){
+							oSpan.innerHTML='<strong>12</strong>';
+						}else{
+							oSpan.innerHTML='<strong>'+i/5+'</strong>';
+						}
+						oSpan.children[0].style.transform='rotate(-'+i*6+'deg)';
+					}
+				}
+			};
+		</script>
+	</head>
+	<body>
+		<div id="clock">
+			<div class="hour"></div>
+			<div class="min"></div>
+			<div class="sec"></div>
+			<div class="cap"></div>
+			<span></span>
+		</div>
+	</body>
+</html>

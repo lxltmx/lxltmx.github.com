@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{margin:0;padding:0;list-style:none;}
+			div{width:100%; position:fixed;bottom:200px;left:0;text-align:center;}
+			img{width:64px;}
+			
+		</style>
+		<script type="text/javascript">
+		window.onload=function(){
+			
+			var oDiv=document.getElementById("div1");
+			var aImg=oDiv.children;
+			
+				
+			document.onmousemove=function (ev) {
+				var oEvt=ev||event;
+				for(var i=0;i<aImg.length;i++){
+					//alert(aImg[i].offsetTop);
+					var oEvt=ev||event;
+					var y=aImg[i].offsetTop+oDiv.offsetTop+aImg[i].offsetHeight/2-oEvt.clientY;
+					var x=aImg[i].offsetLeft+aImg[i].offsetWidth/2-oEvt.clientX;
+					
+					var dis=Math.sqrt(x*x+y*y);
+					
+					var scale=1-dis/300;
+					if(scale<0.5) scale=0.5;
+					
+					aImg[i].style.width=128*scale+'px';
+					aImg[i].style.height=128*scale+'px';
+				}
+			};
+		};
+		</script>
+	</head>
+	<body>
+		<div id="div1">
+			<img src="img2/11.png"/>
+			<img src="img2/12.png"/>
+			<img src="img2/13.png"/>
+			<img src="img2/14.png"/>
+			<img src="img2/15.png"/>
+		</div>
+	</body>
+</html>

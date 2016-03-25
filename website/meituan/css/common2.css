@@ -1,0 +1,22 @@
+@charset "utf-8";
+/* CSS Document */
+
+*{padding:0;margin:0;}
+li{list-style:none}
+a{text-decoration:none}
+input,select,textarea{outline:none;}
+img{border:none;}
+img,input,select,textarea{vertical-align:top;}
+textarea{resize:none;}
+
+.fl{float:left;display:inline}
+.fr{float:right;display:inline}
+.clearFix:after{content:"";display:block;clear:both;}
+.clearFix{zoom:1}
+
+.wrapper{width:1108px;margin:0 auto;overflow:hidden}
+body{font-family:"微软雅黑";font-size:12px;color:#999999;}
+a{color:#999;}
+.wrapper1{width:980px;margin:0 auto;}
+.wrapper2{width:860px;margin:0 auto;}
+

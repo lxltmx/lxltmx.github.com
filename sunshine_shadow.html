@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			p{width:180px;height:36px;font-size:20px;border:2px solid #ccc;line-height:36px;
+			text-align:center;position:absolute;left:50%;top:50%;margin-left:-90px;margin-top:-18px;}
+			#sun{width:80px;height:80px;border-radius:50%;background:lightgoldenrodyellow;position:absolute;}
+		</style>
+		<script type="text/javascript">
+			window.onload=function () {
+				var oSun=document.getElementById("sun");
+				var oT=document.getElementById("t1");
+				document.onmousemove=function (ev) {
+					
+					//pageX=clientX+scrollLeft;
+					oSun.style.left=ev.pageX-oSun.offsetWidth/2+'px';
+					oSun.style.top=ev.pageY-oSun.offsetHeight/2+'px';
+					
+					var x1=ev.pageX-oSun.offsetWidth/2;
+					var y1=ev.pageY-oSun.offsetHeight/2;
+					
+					var x2=oT.offsetLeft+oT.offsetWidth/2;
+					var y2=oT.offsetTop+oT.offsetHeight/2;
+				
+					var x=(x2-x1)/2;
+					var y=(y2-y1)/2;
+					
+					var blur=Math.sqrt(x*x+y*y);
+					
+					oT.style.textShadow=x+'px '+y+'px '+blur/40+'px #000';
+				};
+			};
+		</script>
+	</head>
+	<body>
+		<div id="sun">
+			
+		</div>
+		<p id="t1">光照投影</p>
+	</body>
+</html>

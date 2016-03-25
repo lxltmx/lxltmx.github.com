@@ -1,0 +1,19 @@
+@charset "utf-8";
+/* CSS Document */
+
+*{ margin:0; padding:0; }
+a{ text-decoration:none; }
+li{ list-style:none; }
+textarea{ resize:none; }
+input,select,textarea{ outline:none; }
+img,input,select,textarea{ vertical-align:middle; }
+.fl{ float:left; display:inline; }
+.fr{ float:right;display:inline;  }
+.clearFix:after{ content:''; display:block; clear:both; }
+.clearFix{ zoom:1; }
+img{ border: none;}
+
+body{ font-size:12px; font-family:"\5FAE\8F6F\96C5\9ED1"; color:#8c8c8c; }
+.wrapper{width:980px; margin:0 auto; }
+a{font-size:12px;color:#3ac8bc; }
+.on{ color:#06a7e1;}

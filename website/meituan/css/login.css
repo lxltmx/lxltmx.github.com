@@ -1,0 +1,51 @@
+@charset "utf-8";
+/* CSS Document */
+
+.head{ margin-top:40px;}
+.head h1 a { display:block; background:url(../images/base.vdd88fa40.png) no-repeat;background-position:-0px -82px; width:82px; height:54px; text-indent:-9999em;}
+.content{ margin-top:58px; }
+.content .img{ width:596px; height:440px;}
+.loginbar{ width:260px; height:440px;}
+.loginbar .denglv{ line-height:14px;font-size:14px;color:#666666; margin-bottom:10px;}
+.loginbar .denglv a{color:#666666;font-size:14px;}
+.loginbar .denglv a i { float:right;display:block;background:url(../images/bg.png) no-repeat;background-position:-276px -201px; width:14px; height:14px; }
+
+.loginbar .txt{ width:258px; height:34px; border:1px solid #aaaaaa; position:relative;line-height:34px; margin-bottom:10px;}
+.loginbar .txt i{ background:url(../images/bg.png) no-repeat;background-position:-298px -141px; width:18px; height:18px; position:absolute; left:10px; top:8px;}
+.loginbar .txt input{ width:220px; padding-left:33px; height:34px; font-size:14px; border:none; line-height:34px;}
+.loginbar .pass{ width:258px; height:34px; border:1px solid #aaaaaa; position:relative;line-height:34px; margin-bottom:10px;}
+.loginbar .pass i{ background:url(../images/bg.png) no-repeat;background-position:-150px -217px; width:18px; height:18px; position:absolute; left:10px; top:8px;}
+.loginbar .pass input{ width:220px; padding-left:33px; height:34px; font-size:14px; border:none; line-height:34px;}
+.loginbar .btn{ margin-top:10px; width:100%; height:36px; background:#2dbaac; color:#FFF; line-height:36px; text-align:center; border:none; border-bottom:1px solid #0d7b71; cursor:pointer; margin-bottom:22px;}
+
+.loginbar .web{ margin-top:54px;}
+.loginbar .web ul{ margin-top:10px;}
+.loginbar .web li{ margin-right:15px; margin-bottom:10px;}
+.loginbar .web li i{ float:left; display:block;background:url(../images/bg.png) no-repeat;background-position:-280px -141px; width:18px; height:18px; margin-right:6px;}
+.loginbar .web li a{ color:#999999;}
+.loginbar .web .more a{color:#2dbaac; }
+
+.denglv:hover a{ text-decoration:underline;}
+.check:hover a{ text-decoration:underline; color:#2dbaac;}
+.zhanghao:hover a{ text-decoration:underline; color:#2dbaac;}
+.more:hover a{ text-decoration:underline; color:#2dbaac;}
+
+.footer .top{ width:100%; height:48px; border-top:1px solid #eeeeee; border-bottom:1px solid #eeeeee;}
+.footer .top .left{ margin-top:16px; overflow:hidden; width:596px;}
+.footer .top .left li{ padding:0 16px; border-left:1px solid #eeeeee; line-height:14px; margin-left:-1px;}
+.footer .top .left li a{ color:#999999;}
+
+
+.footer .top .right{ margin-top:14px; overflow:hidden; }
+.footer .top .right li{ padding:0 16px;line-height:14px;}
+.footer .top .right li i{ display:block; float:left; width:22px; height:24px;background:url(../images/bg.png) no-repeat;background-position:-280px -141px; }
+.footer .top .right li a{ color:#999999;}
+.copyright{ margin:25px 0 ;}
+.copyright a{ color:#999999}
+.copyright p a:hover{ text-decoration:underline; color:#2dbaac;}
+
+.body{ position:relative;}
+.box{ width:114px; position:fixed; top:20%;right:20px; }
+#pic{ width:114px; height:228px; display:block; }
+#xx{ position:absolute; top:114px; right:12px;width:10px; height:10px; }
+
