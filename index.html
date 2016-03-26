@@ -11,6 +11,84 @@
     <link href="css/styles.css" rel="stylesheet">
     <link href="css/queries.css" rel="stylesheet">  <!--相应式布局-->
     <link href="css/animate.css" rel="stylesheet">
+   
+		<script type="text/javascript">
+    window.onload = function() {
+    	//技能数组
+    	var arr=["ajax、jsonp","git、svn","grunt、gulp","mvc","seajs","php、nodejs","html5、css3","canvas"];
+    	
+			var oDiv = document.getElementById("moreSkills");
+			var oSkills=document.getElementById("skills");
+			var oBtn = oDiv.children[0];
+			var count = 8;
+			var bl = true;
+			for (var i = 0; i < count; i++) {
+				var oBox = document.createElement('div');
+				
+				oBox.innerHTML=arr[i];
+				//oBox.innerHTML.style.color="rgba("+Math.random()*255+","+Math.random()*255+","+Math.random()*255+","+Math.random()+")";
+				oBox.className ='sBox';
+				oSkills.appendChild(oBox);
+				setPos(oBox,0); //定位小圆到弧线上
+				oBox.radian = 0;
+			}
+			function move1(obj, iTarget,fn) {
+				var start = obj.radian;
+				var dis = iTarget - start;
+				var count = Math.round(700 / 30);
+				var n = 0;
+				clearInterval(obj.timer);
+				obj.timer = setInterval(function() {
+					n++;
+					//cur=start+dis/count*n;
+					var a = 1 - n / count;
+					var cur = start + dis * (1 - a * a * a);
+					setPos(obj, cur);
+					obj.radian = cur;
+					if (n == count) {
+						fn&&fn();
+						clearInterval(obj.timer);
+					}
+				}, 30);
+			}
+			oBtn.onclick = function() {
+				var aBox = document.getElementsByClassName('sBox');
+				if (bl) {
+					
+					for (var i = 0; i < aBox.length; i++) {
+					
+						aBox[i].style.display="block";
+						//move1(aBox[i], i * (90 / (count - 1))); //0	0*90/6
+						move1(aBox[i], i * (360 / count));
+					}
+					bl = false; //45				180
+					
+				} else { //60				240
+					for (var i = 0; i < aBox.length; i++) {
+						//75 300
+						move1(aBox[i],0);
+					}
+					setTimeout(function () {
+						for (var i = 0; i < aBox.length; i++) {
+							aBox[i].style.display="none";
+						}
+					},700)
+											
+					bl = true;
+				}
+			}
+		
+			function setPos(obj, ang) {
+				var a = Math.sin(a2r(ang)) * oDiv.offsetWidth / 2;
+				var b = Math.cos(a2r(ang)) * oDiv.offsetHeight / 2;
+				obj.style.left = oDiv.offsetLeft + oDiv.offsetWidth / 2 + a + 'px';
+				obj.style.top = oDiv.offsetTop + oDiv.offsetHeight / 2 - b + 'px';
+			}
+			function a2r(ang) {
+				return ang * Math.PI / 180;
+			}
+		}
+    </script>
       </head>
       <body id="top">
         <header id="home">
@@ -20,7 +98,7 @@
                 <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-8 col-xs-offset-2">
                   <nav class="pull">
                     <ul class="top-nav">
-                      <li><a href="#intro">简介 <span class="indicator"><i class="fa fa-angle-right"></i></span></a></li>
+                      <li><a href="#intro">扉页 <span class="indicator"><i class="fa fa-angle-right"></i></span></a></li>
                       <li><a href="#features">技能<span class="indicator"><i class="fa fa-angle-right"></i></span></a></li>
                       <li><a href="#portfolio">作品<span class="indicator"><i class="fa fa-angle-right"></i></span></a></li>
                       <li><a href="#team">关于我<span class="indicator"><i class="fa fa-angle-right"></i></span></a></li>
@@ -69,14 +147,14 @@
                       <i class="fa fa-laptop shadow"></i>
                     </div>
                     <h2>html</h2>
-                    <p>熟练掌握HTML，熟悉HTML5<br />编写符合W3C标准的网页,还原视觉设计</p>
+                    <p>熟练掌握HTML<br />编写符合W3C标准的网页,还原视觉设计</p>
                   </div>
                   <div class="col-md-4 wp2 delay-05s">
                     <div class="icon"  style="background:lightgoldenrodyellow;">
                       <i class="fa fa-code shadow"></i>
                     </div>
                     <h2>css</h2>
-                    <p>熟练运用CSS,熟悉浏览器兼容性解决方案,了解css3</p>
+                    <p>熟练运用CSS,熟悉浏览器兼容性解决方案</p>
                   </div>
                   <div class="col-md-4 wp2 delay-1s">
                     <div class="icon" style="background:lightsteelblue;">
@@ -97,11 +175,14 @@
               <div class="iphone">
                 <div class="wp3"></div>
               </div>
-              <div id="moreSkills">
-              	<input type="button" id="btn" value="更多" />
+              <div id="skills">
+              		<p>More skill/更多技能</p>
+              		<div id="moreSkills">
+		              	<div class="btn"></div>
+		              </div>
               </div>
+              
             </div>
-           	
         </section>
         <section class="swag text-center">
           <div class="container">
@@ -118,87 +199,7 @@
             <div class="row">
               <div id="portfolioSlider">
                 <ul class="slides">
-                  <li>
-                    <div class="col-md-4 wp4">
-                      <div class="overlay-effect effects clearfix">
-                        <div class="img">
-                          <img src="img/works3.jpg"  style="width:300px;height:200px;" alt="Portfolio Item">
-                          <div class="overlay">
-                            <a href="throughWall.html" class="expand" target="_blank"><i class="fa fa-search"></i><br>View</a>
-                            <a class="close-overlay hidden">x</a>
-                          </div>
-                        </div>
-                      </div>
-                      <h2>仿静态网页</h2>
-                      <p></p>
-                    </div>
-                    <div class="col-md-4 wp4">
-                      <div class="overlay-effect effects clearfix">
-                        <div class="img">
-                          <img src="img/works6.jpg"  style="width:300px;height:200px;" alt="Portfolio Item">
-                          <div class="overlay">
-                            <a href="3d_circle.html" class="expand" target="_blank"><i class="fa fa-search"></i><br>View</a>
-                            <a class="close-overlay hidden">x</a>
-                          </div>
-                        </div>
-                      </div>
-                      <h2>3d圆环</h2>
-                      <p></p>
-                    </div>
-                    <div class="col-md-4 wp4">
-                      <div class="overlay-effect effects clearfix">
-                        <div class="img">
-                          <img src="img/works5.jpg"  style="width:300px;height:200px;" alt="Portfolio Item">
-                          <div class="overlay">
-                            <a href="javascript:;" class="expand" target="_blank"><i class="fa fa-search"></i><br>View</a>
-                            <a class="close-overlay hidden">x</a>
-                          </div>
-                        </div>
-                      </div>
-                      <h2>照片书</h2>
-                      <p></p>
-                    </div>
-                    <div class="col-md-4 wp4 delay-05s">
-                      <div class="overlay-effect effects clearfix">
-                        <div class="img">
-                          <img src="img/works6.jpg" style="width:300px;height:200px;" alt="Portfolio Item">
-                          <div class="overlay">
-                            <a href="screen_pro.html" class="expand" target="_blank"><i class="fa fa-search"></i><br>View More</a>
-                            <a class="close-overlay hidden">x</a>
-                          </div>
-                        </div>
-                      </div>
-                      <h2>xp屏保</h2>
-                      <p></p>
-                    </div>
-                    <div class="col-md-4 wp4 delay-1s">
-                      <div class="overlay-effect effects clearfix">
-                        <div class="img">
-                          <img src="img/works3.jpg" style="width:300px;height:200px;" alt="Portfolio Item">
-                          <div class="overlay">
-                            <a href="css3_clock.html" class="expand" target="_blank"><i class="fa fa-search"></i><br>View More</a>
-                            <a class="close-overlay hidden">x</a>
-                          </div>
-                        </div>
-                      </div>
-                      <h2>纯css3手写时钟</h2>
-                      <p></p>
-                    </div>
-                    <div class="col-md-4 wp4">
-                      <div class="overlay-effect effects clearfix">
-                        <div class="img">
-                          <img src="img/works5.jpg"  style="width:300px;height:200px;" alt="Portfolio Item">
-                          <div class="overlay">
-                            <a href="chromeApps.html" class="expand" target="_blank"><i class="fa fa-search"></i><br>View More</a>
-                            <a class="close-overlay hidden">x</a>
-                          </div>
-                        </div>
-                      </div>
-                      <h2>谷歌商店拖拽图标</h2>
-                      <p></p>
-                    </div>
-                  </li>
-                  <li>
+                	<li>
                     <div class="col-md-4 wp4">
                       <div class="overlay-effect effects clearfix">
                         <div class="img">
@@ -278,7 +279,88 @@
                       <p></p>
                     </div>
                   </li>
-                </ul>
+                
+                  <li>
+                    <div class="col-md-4 wp4">
+                      <div class="overlay-effect effects clearfix">
+                        <div class="img">
+                          <img src="img/works3.jpg"  style="width:300px;height:200px;" alt="Portfolio Item">
+                          <div class="overlay">
+                            <a href="throughWall.html" class="expand" target="_blank"><i class="fa fa-search"></i><br>View</a>
+                            <a class="close-overlay hidden">x</a>
+                          </div>
+                        </div>
+                      </div>
+                      <h2>仿静态网页</h2>
+                      <p></p>
+                    </div>
+                    <div class="col-md-4 wp4">
+                      <div class="overlay-effect effects clearfix">
+                        <div class="img">
+                          <img src="img/works6.jpg"  style="width:300px;height:200px;" alt="Portfolio Item">
+                          <div class="overlay">
+                            <a href="3d_circle.html" class="expand" target="_blank"><i class="fa fa-search"></i><br>View</a>
+                            <a class="close-overlay hidden">x</a>
+                          </div>
+                        </div>
+                      </div>
+                      <h2>3d圆环</h2>
+                      <p></p>
+                    </div>
+                    <div class="col-md-4 wp4">
+                      <div class="overlay-effect effects clearfix">
+                        <div class="img">
+                          <img src="img/works5.jpg"  style="width:300px;height:200px;" alt="Portfolio Item">
+                          <div class="overlay">
+                            <a href="javascript:;" class="expand" target="_blank"><i class="fa fa-search"></i><br>View</a>
+                            <a class="close-overlay hidden">x</a>
+                          </div>
+                        </div>
+                      </div>
+                      <h2>照片书</h2>
+                      <p></p>
+                    </div>
+                    <div class="col-md-4 wp4 delay-05s">
+                      <div class="overlay-effect effects clearfix">
+                        <div class="img">
+                          <img src="img/works6.jpg" style="width:300px;height:200px;" alt="Portfolio Item">
+                          <div class="overlay">
+                            <a href="screen_pro.html" class="expand" target="_blank"><i class="fa fa-search"></i><br>View More</a>
+                            <a class="close-overlay hidden">x</a>
+                          </div>
+                        </div>
+                      </div>
+                      <h2>canvas屏保</h2>
+                      <p></p>
+                    </div>
+                    <div class="col-md-4 wp4 delay-1s">
+                      <div class="overlay-effect effects clearfix">
+                        <div class="img">
+                          <img src="img/works3.jpg" style="width:300px;height:200px;" alt="Portfolio Item">
+                          <div class="overlay">
+                            <a href="css3_clock.html" class="expand" target="_blank"><i class="fa fa-search"></i><br>View More</a>
+                            <a class="close-overlay hidden">x</a>
+                          </div>
+                        </div>
+                      </div>
+                      <h2>纯css3手写时钟</h2>
+                      <p></p>
+                    </div>
+                    <div class="col-md-4 wp4">
+                      <div class="overlay-effect effects clearfix">
+                        <div class="img">
+                          <img src="img/works5.jpg"  style="width:300px;height:200px;" alt="Portfolio Item">
+                          <div class="overlay">
+                            <a href="chromeApps.html" class="expand" target="_blank"><i class="fa fa-search"></i><br>View More</a>
+                            <a class="close-overlay hidden">x</a>
+                          </div>
+                        </div>
+                      </div>
+                      <h2>谷歌商店拖拽图标</h2>
+                      <p></p>
+                    </div>
+                  </li>
+                  </ul>
               </div>
             </div>
           </div>
@@ -379,67 +461,7 @@
             </div>
           </div>
         </footer>
-        <script type="text/javascript">
-        window.onload = function() {
-						var oDiv = document.getElementById("moreSkills");
-						var oBtn = document.getElementById("btn");
-						var count = 6;
-						var bl = true;
-						for (var i = 0; i < count; i++) {
-							var oBox = document.createElement('div');
-							oBox.className ='sBox';
-							document.body.appendChild(oBox);
-							setPos(oBox,0); //定位小圆到弧线上
-							oBox.radian = 0;
-						}
-						function move1(obj, iTarget) {
-							var start = obj.radian;
-							var dis = iTarget - start;
-							var count = Math.round(700 / 30);
-							var n = 0;
-							clearInterval(obj.timer);
-							obj.timer = setInterval(function() {
-								n++;
-								//cur=start+dis/count*n;
-								var a = 1 - n / count;
-								var cur = start + dis * (1 - a * a * a);
-								setPos(obj, cur);
-								obj.radian = cur;
-								if (n == count) {
-									clearInterval(obj.timer);
-								}
-							}, 30);
-						}
-						oBtn.onclick = function() {
-							var aBox = document.getElementsByClassName('sBox');
-							if (bl) {
-								for (var i = 0; i < aBox.length; i++) {
-									move1(aBox[i], i * (90 / (count - 1))); //0	0*90/6
-								}
-								bl = false; //45				180
-								this.value = '收起'; //30	2			120
-							} else { //60				240
-								for (var i = 0; i < aBox.length; i++) { //75				300
-									move1(aBox[i], 0);
-								}
-								bl = true;
-								this.value = '更多';
-							}
-						}
-					
-						function setPos(obj, ang) {
-							var a = Math.sin(a2r(ang)) * oDiv.offsetWidth / 2;
-							var b = Math.cos(a2r(ang)) * oDiv.offsetHeight / 2;
-							obj.style.left = oDiv.offsetLeft + oDiv.offsetWidth / 2 + a + 'px';
-							obj.style.top = oDiv.offsetTop + oDiv.offsetHeight / 2 - b + 'px';
-						}
-					
-						function a2r(ang) {
-							return ang * Math.PI / 180;
-						}
-					
-					}
-        </script>
+        
         <script src="js/jquery.min.js"></script>
         <script src="js/waypoints.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
