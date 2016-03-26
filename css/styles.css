@@ -258,7 +258,7 @@ me
 */
 #teamSlider .me h5{font-size:16px;font-weight:bold;}
 #teamSlider .me h5 p{transition:all 1s ease;}
-#teamSlider .me h5:hover p{font-size:20px;color:rgb(61, 201, 179);}
+#teamSlider .me h5:hover p{font-size:20px;color:#87CEFA;}
 .team img { margin-bottom: 40px; }
 ul.social-buttons { list-style: none; margin: 0; padding: 0; }
 ul.social-buttons li { display: inline-block; margin-right: 10px; }
