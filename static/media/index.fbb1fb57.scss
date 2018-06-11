@@ -1,0 +1,127 @@
+*{
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  font-size: 12px;
+}
+
+html,body{
+	height: 100%;
+}
+.navContainer{
+	height:0;
+	display: flex;
+	background:#1b1d24;
+	justify-content: center;
+	transition:all 0.5s ease;
+	.navList{
+		flex: 0 1 66%;
+		display: flex;
+		flex-direction: column;
+		padding: 14px 0;
+		height: 304px;
+		li{
+			display: flex;
+			align-items: center;
+			list-style: none;
+			height: 60px;
+			border-bottom: 1px dotted rgba(255, 255, 255, 0.2);
+			a{
+				flex:1;
+				display: flex;
+				font-size: 14px;
+				justify-content: space-between;
+				font-weight: 320;
+				font-family: HelveticaNeue;
+				text-decoration: none;
+				color: rgba(255, 255, 255, 0.6);
+				transition: all 0.5s ease;
+				&:hover{
+					color: rgba(255, 255, 255, 1);
+				}
+			}
+			&:last-child{
+				border: none;
+			}
+			/*兼容IE8*/
+			/*+ li + li + li + li{
+			    border: none;
+			}*/
+		}
+	}
+}
+.navContainer.cur{
+	height:332px;
+}
+.mainScreen{
+	position: relative;
+	img{
+		width:100%;
+		min-height: 100vh;
+	}
+	#toggleNav{
+		position: absolute;
+		left: 8%;
+		top:6%;
+		width: 70px;
+		height: 70px;
+		cursor: pointer;
+		border-radius: 50%;
+		background: url(../images/main/toggleNav.png) no-repeat center;
+		box-shadow: -12px 5px 10px #000;
+		opacity: 0.6;
+		transition: all 0.5s ease;
+		&:hover{
+			opacity: 1;
+		}
+		p{
+			width: 120px;
+			font-weight: bold;
+    		font-size: 16px;
+    		color: #666;
+    		letter-spacing: 5px;
+    		word-spacing: 1px;
+			position: absolute;
+			bottom: -45px;
+			left: 0;
+		}
+	}
+	.signature{
+		color:#C0C0C0;
+		font-size: 40px;
+		letter-spacing: 5px;
+		top: 35%;
+		left:40%;
+		position: absolute;
+		&-appear {
+		  opacity: 0.01;
+		  transform: scale(0.9) translateY(-20px) ;
+		}
+		&-appear-active {
+		  opacity: 1;
+		  transform: scale(1) translateY(0%);
+		  transition: all 600ms ease-in;
+		}
+	}
+	.subtitle{
+		color: #a1a9b0;
+		font-size: 14px;
+		font-style: italic;
+		letter-spacing: 5px;
+		top: 42%;
+		left:46%;
+		position: absolute;
+		&-appear {
+		  opacity: 0.01;
+		  transform: scale(0.9) translate(0%,40%);
+		}
+		&-appear-active {
+		  opacity: 1;
+		  transform: scale(1) translate(0%,0%);
+		  transition: all 600ms ease-in;
+		  transition-delay: 600ms;
+		}
+	}
+	
+}
+
